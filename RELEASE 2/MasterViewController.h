@@ -47,6 +47,7 @@
 
 
 @interface MasterViewController : UITableViewController
+<UIPickerViewDelegate,UIPickerViewDataSource>
 @property (strong, nonatomic) IBOutlet UIImageView *estadoMaquina1;
 @property (strong, nonatomic) IBOutlet UIImageView *estadoMaquina2;
 @property (strong, nonatomic) IBOutlet UIImageView *estadoMaquina3;
@@ -55,24 +56,19 @@
 @property (strong, nonatomic) IBOutlet UIImageView *estadoMaquina6;
 @property (strong, nonatomic) IBOutlet UIImageView *estadoMaquina7;
 
-@property (strong, nonatomic) IBOutlet UIImageView *materialMaquina1;
-@property (strong, nonatomic) IBOutlet UIImageView *materialMaquina2;
-@property (strong, nonatomic) IBOutlet UIImageView *materialMaquina3;
-@property (strong, nonatomic) IBOutlet UIImageView *materialMaquina4;
-@property (strong, nonatomic) IBOutlet UIImageView *materialMaquina5;
-@property (strong, nonatomic) IBOutlet UIImageView *materialMaquina6;
-@property (strong, nonatomic) IBOutlet UIImageView *materialMaquina7;
+@property (strong, nonatomic) IBOutlet UIPickerView *pvMaquina1;
+@property (strong, nonatomic) IBOutlet UIPickerView *pvMaquina2;
+@property (strong, nonatomic) IBOutlet UIPickerView *pvMaquina3;
+@property (strong, nonatomic) IBOutlet UIPickerView *pvMaquina4;
+@property (strong, nonatomic) IBOutlet UIPickerView *pvMaquina5;
+@property (strong, nonatomic) IBOutlet UIPickerView *pvMaquina6;
+@property (strong, nonatomic) IBOutlet UIPickerView *pvMaquina7;
+
 
 - (IBAction)stopAll:(id)sender;
 
-- (IBAction)verDetalle1:(id)sender;
-- (IBAction)verDetalle2:(id)sender;
-- (IBAction)verDetalle3:(id)sender;
-- (IBAction)verDetalle4:(id)sender;
-- (IBAction)verDetalle5:(id)sender;
-- (IBAction)verDetalle6:(id)sender;
-- (IBAction)verDetalle7:(id)sender;
 
 @property NSArray* arrUsers;
+@property NSArray* estadosMaquinas;
 
 @end

@@ -266,9 +266,9 @@
     
     [self createTimer];
     numMachine =0;
-    NSLog([self.arrUsers objectAtIndex:0] );
-    NSLog(@"1");
+    self.estadosMaquinas = [[NSArray alloc] initWithObjects:@"",@"powerRed.png",@"powerGreen.png",@"powerYellow.png", nil];
     
+   
 }
 
 - (NSTimer*)createTimer {
@@ -331,7 +331,6 @@
     machine5[0] =1;
     machine6[0] =1;
     machine7[0] =1;
-
     
 }
 
@@ -361,214 +360,15 @@
      Pos9 =@"materialOutCuadrado2",
      Pos10 =@"materialOutTriangulo3",
      */
-
-    if(machine1[4] == 1) {
-
-        self.estadoMaquina1.image = [UIImage imageNamed:@"powerRed.png"];
-
-    }
-    else if (machine1[4] == 2) {
-
-        self.estadoMaquina1.image = [UIImage imageNamed:@"powerGreen.png"];
-
-    }
-    else if (machine1[4] == 3) {
-
-        self.estadoMaquina1.image = [UIImage imageNamed:@"powerYellow.png"];
-        
-    }
     
+    self.estadoMaquina1.image = [UIImage imageNamed:[self.estadosMaquinas objectAtIndex:machine1[4]]];
+    self.estadoMaquina2.image = [UIImage imageNamed:[self.estadosMaquinas objectAtIndex:machine2[4]]];
+    self.estadoMaquina3.image = [UIImage imageNamed:[self.estadosMaquinas objectAtIndex:machine3[4]]];
+    self.estadoMaquina4.image = [UIImage imageNamed:[self.estadosMaquinas objectAtIndex:machine4[4]]];
+    self.estadoMaquina5.image = [UIImage imageNamed:[self.estadosMaquinas objectAtIndex:machine5[4]]];
+    self.estadoMaquina6.image = [UIImage imageNamed:[self.estadosMaquinas objectAtIndex:machine6[4]]];
+    self.estadoMaquina7.image = [UIImage imageNamed:[self.estadosMaquinas objectAtIndex:machine7[4]]];
     
-    if(machine2[4] == 1) {
-        self.estadoMaquina2.image = [UIImage imageNamed:@"powerRed.png"];
-        
-    }
-    else if (machine2[4] == 2) {
-        self.estadoMaquina2.image = [UIImage imageNamed:@"powerGreen.png"];
-        
-    }
-    else if (machine2[4] == 3) {
-        self.estadoMaquina2.image = [UIImage imageNamed:@"powerYellow.png"];
-        
-    }
-    
-    
-    if(machine3[4] == 1) {
-        self.estadoMaquina3.image = [UIImage imageNamed:@"powerRed.png"];
-        
-    }
-    else if (machine3[4] == 2) {
-        self.estadoMaquina3.image = [UIImage imageNamed:@"powerGreen.png"];
-        
-    }
-    else if (machine3[4] == 3) {
-        self.estadoMaquina3.image = [UIImage imageNamed:@"powerYellow.png"];
-        
-    }
-    
-    
-    if(machine4[4] == 1) {
-        self.estadoMaquina4.image = [UIImage imageNamed:@"powerRed.png"];
-        
-    }
-    else if (machine4[4] == 2) {
-        self.estadoMaquina4.image = [UIImage imageNamed:@"powerGreen.png"];
-        
-    }
-    else if (machine4[4] == 3) {
-        self.estadoMaquina4.image = [UIImage imageNamed:@"powerYellow.png"];
-        
-    }
-    
-    
-    if(machine5[4] == 1) {
-        self.estadoMaquina5.image = [UIImage imageNamed:@"powerRed.png"];
-        
-    }
-    else if (machine5[4] == 2) {
-        self.estadoMaquina5.image = [UIImage imageNamed:@"powerGreen.png"];
-        
-    }
-    else if (machine5[4] == 3) {
-        self.estadoMaquina5.image = [UIImage imageNamed:@"powerYellow.png"];
-        
-    }
-    
-    
-    if(machine6[4] == 1) {
-        self.estadoMaquina6.image = [UIImage imageNamed:@"powerRed.png"];
-        
-    }
-    else if (machine6[4] == 2) {
-        self.estadoMaquina6.image = [UIImage imageNamed:@"powerGreen.png"];
-        
-    }
-    else if (machine6[4] == 3) {
-        self.estadoMaquina6.image = [UIImage imageNamed:@"powerYellow.png"];
-        
-    }
-    
-    
-    if(machine7[4] == 1) {
-        self.estadoMaquina7.image = [UIImage imageNamed:@"powerRed.png"];
-        
-    }
-    else if (machine7[4] == 2) {
-        self.estadoMaquina7.image = [UIImage imageNamed:@"powerGreen.png"];
-        
-    }
-    else if (machine7[4] == 3) {
-        self.estadoMaquina7.image = [UIImage imageNamed:@"powerYellow.png"];
-        
-    }
-    
-    
-    
-    
-    
-    //--------------------------------
-    
-    
-    
-    if(machine1[3] == 1) {
-        self.materialMaquina1.image = [UIImage imageNamed:@"circleGreen.png"];
-        
-    }
-    else if (machine1[3] == 2) {
-        self.materialMaquina1.image = [UIImage imageNamed:@"squareGreen.png"];
-        
-    }
-    else if (machine1[3] == 3) {
-        self.materialMaquina1.image = [UIImage imageNamed:@"triangleGreen.png"];
-        
-    }
-    
-    
-    if(machine2[3] == 1) {
-        self.materialMaquina2.image = [UIImage imageNamed:@"circleGreen.png"];
-        
-    }
-    else if (machine2[3] == 2) {
-        self.materialMaquina2.image = [UIImage imageNamed:@"squareGreen.png"];
-        
-    }
-    else if (machine2[3] == 3) {
-        self.materialMaquina2.image = [UIImage imageNamed:@"triangleGreen.png"];
-        
-    }
-    
-    
-    if(machine3[3] == 1) {
-        self.materialMaquina3.image = [UIImage imageNamed:@"circleGreen.png"];
-        
-    }
-    else if (machine3[3] == 2) {
-        self.materialMaquina3.image = [UIImage imageNamed:@"squareGreen.png"];
-        
-    }
-    else if (machine3[3] == 3) {
-        self.materialMaquina3.image = [UIImage imageNamed:@"triangleGreen.png"];
-        
-    }
-    
-    
-    
-    if(machine4[3] == 1) {
-        self.materialMaquina4.image = [UIImage imageNamed:@"circleGreen.png"];
-        
-    }
-    else if (machine4[3] == 2) {
-        self.materialMaquina4.image = [UIImage imageNamed:@"squareGreen.png"];
-        
-    }
-    else if (machine4[3] == 3) {
-        self.materialMaquina4.image = [UIImage imageNamed:@"triangleGreen.png"];
-        
-    }
-    
-    
-    
-    if(machine5[3] == 1) {
-        self.materialMaquina5.image = [UIImage imageNamed:@"circleGreen.png"];
-        
-    }
-    else if (machine5[3] == 2) {
-        self.materialMaquina5.image = [UIImage imageNamed:@"squareGreen.png"];
-        
-    }
-    else if (machine5[3] == 3) {
-        self.materialMaquina5.image = [UIImage imageNamed:@"triangleGreen.png"];
-        
-    }
-    
-    
-    
-    if(machine6[3] == 1) {
-        self.materialMaquina6.image = [UIImage imageNamed:@"circleGreen.png"];
-        
-    }
-    else if (machine6[3] == 2) {
-        self.materialMaquina6.image = [UIImage imageNamed:@"squareGreen.png"];
-        
-    }
-    else if (machine6[3] == 3) {
-        self.materialMaquina6.image = [UIImage imageNamed:@"triangleGreen.png"];
-        
-    }
-    
-    
-    if(machine7[3] == 1) {
-        self.materialMaquina7.image = [UIImage imageNamed:@"circleGreen.png"];
-        
-    }
-    else if (machine7[3] == 2) {
-        self.materialMaquina7.image = [UIImage imageNamed:@"squareGreen.png"];
-        
-    }
-    else if (machine7[3] == 3) {
-        self.materialMaquina7.image = [UIImage imageNamed:@"triangleGreen.png"];
-        
-    }
     [self encodeStringToSend];
 }
 
@@ -687,49 +487,6 @@
     
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 /*
 #pragma mark - Navigation
@@ -758,40 +515,6 @@
     });
 }
 
-- (IBAction)verDetalle1:(id)sender {
-    numMachine =1;
-    [self performSegueWithIdentifier: @"adminAMaquina" sender: self];
-}
-
-- (IBAction)verDetalle2:(id)sender {
-    numMachine =2;
-    [self performSegueWithIdentifier: @"adminAMaquina" sender: self];
-}
-
-- (IBAction)verDetalle3:(id)sender {
-    numMachine =3;
-    [self performSegueWithIdentifier: @"adminAMaquina" sender: self];
-}
-
-- (IBAction)verDetalle4:(id)sender {
-    numMachine =4;
-    [self performSegueWithIdentifier: @"adminAMaquina" sender: self];
-}
-
-- (IBAction)verDetalle5:(id)sender {
-    numMachine =5;
-    [self performSegueWithIdentifier: @"adminAMaquina" sender: self];
-}
-
-- (IBAction)verDetalle6:(id)sender {
-    numMachine =6;
-    [self performSegueWithIdentifier: @"adminAMaquina" sender: self];
-}
-
-- (IBAction)verDetalle7:(id)sender {
-    numMachine =7;
-    [self performSegueWithIdentifier: @"adminAMaquina" sender: self];
-}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -815,5 +538,15 @@
     }
 }
 
+- (NSString *) pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return self.arrUsers[row];
+}
 
+- (NSInteger) numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+- (NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return [self.arrUsers count];
+}
 @end
