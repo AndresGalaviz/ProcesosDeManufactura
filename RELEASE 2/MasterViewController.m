@@ -266,6 +266,8 @@
     
     [self createTimer];
     numMachine =0;
+    NSLog([self.arrUsers objectAtIndex:0] );
+    NSLog(@"1");
     
 }
 

@@ -73,5 +73,6 @@
 - (IBAction)verDetalle6:(id)sender;
 - (IBAction)verDetalle7:(id)sender;
 
+@property NSArray* arrUsers;
 
 @end
