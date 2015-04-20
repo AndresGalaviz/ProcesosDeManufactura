@@ -52,7 +52,7 @@
 		D5CC76D41A27115700402297 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = D5CC76B81A27115700402297 /* circle.png */; };
 		D5CC76D51A27115700402297 /* triangle.png in Resources */ = {isa = PBXBuildFile; fileRef = D5CC76B91A27115700402297 /* triangle.png */; };
 		D5CC76D61A27115700402297 /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = D5CC76BA1A27115700402297 /* square.png */; };
-		FB2B01621AE5BB5E0073857D /* AdminViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB2B01611AE5BB5E0073857D /* AdminViewController.m */; };
+		FB2B01651AE5BE250073857D /* AdminViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB2B01641AE5BE250073857D /* AdminViewController.m */; };
 		FB74F85E1AE5B42C0040B896 /* CustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB74F85D1AE5B42C0040B896 /* CustomView.m */; };
 		FB74F8631AE5B43C0040B896 /* Process.m in Sources */ = {isa = PBXBuildFile; fileRef = FB74F8601AE5B43C0040B896 /* Process.m */; };
 		FB74F8641AE5B43C0040B896 /* Stage.m in Sources */ = {isa = PBXBuildFile; fileRef = FB74F8621AE5B43C0040B896 /* Stage.m */; };
@@ -127,8 +127,8 @@
 		D5CC76B81A27115700402297 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
 		D5CC76B91A27115700402297 /* triangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle.png; sourceTree = "<group>"; };
 		D5CC76BA1A27115700402297 /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square.png; sourceTree = "<group>"; };
-		FB2B01601AE5BB5E0073857D /* AdminViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AdminViewController.h; path = ../AdminViewController.h; sourceTree = "<group>"; };
-		FB2B01611AE5BB5E0073857D /* AdminViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AdminViewController.m; path = ../AdminViewController.m; sourceTree = "<group>"; };
+		FB2B01631AE5BE250073857D /* AdminViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdminViewController.h; sourceTree = "<group>"; };
+		FB2B01641AE5BE250073857D /* AdminViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdminViewController.m; sourceTree = "<group>"; };
 		FB74F85C1AE5B42C0040B896 /* CustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomView.h; sourceTree = "<group>"; };
 		FB74F85D1AE5B42C0040B896 /* CustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomView.m; sourceTree = "<group>"; };
 		FB74F85F1AE5B43C0040B896 /* Process.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Process.h; sourceTree = "<group>"; };
@@ -176,9 +176,9 @@
 		C12EF3DD1A1AD0220053C202 /* RELEASE 2 */ = {
 			isa = PBXGroup;
 			children = (
+				FB2B01631AE5BE250073857D /* AdminViewController.h */,
+				FB2B01641AE5BE250073857D /* AdminViewController.m */,
 				C12EF41C1A1AF0790053C202 /* img */,
-				FB2B01601AE5BB5E0073857D /* AdminViewController.h */,
-				FB2B01611AE5BB5E0073857D /* AdminViewController.m */,
 				C12EF3E21A1AD0220053C202 /* AppDelegate.h */,
 				C12EF3E31A1AD0220053C202 /* AppDelegate.m */,
 				C12EF3E51A1AD0220053C202 /* ViewController.h */,
@@ -415,7 +415,7 @@
 				C12EF4391A1B05BB0053C202 /* MCManager.m in Sources */,
 				C12EF47D1A1B0AC60053C202 /* DetailViewController.m in Sources */,
 				FB74F8641AE5B43C0040B896 /* Stage.m in Sources */,
-				FB2B01621AE5BB5E0073857D /* AdminViewController.m in Sources */,
+				FB2B01651AE5BE250073857D /* AdminViewController.m in Sources */,
 				C12EF4801A1B0B080053C202 /* MasterViewController.m in Sources */,
 				C12EF3E41A1AD0220053C202 /* AppDelegate.m in Sources */,
 				C12EF4421A1B0A500053C202 /* JoinViewController.m in Sources */,
