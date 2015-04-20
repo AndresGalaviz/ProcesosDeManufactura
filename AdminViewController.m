@@ -1,21 +1,23 @@
 //
-//  AdminNavigationViewController.m
+//  AdminViewController.m
 //  release 2
 //
-//  Created by alumno on 17/04/15.
+//  Created by alumno on 4/20/15.
 //  Copyright (c) 2015 JuanPauloLara. All rights reserved.
 //
 
-#import "AdminNavigationViewController.h"
+#import "AdminViewController.h"
 
-@interface AdminNavigationViewController ()
+@interface AdminViewController ()
 
 @end
 
-@implementation AdminNavigationViewController
+@implementation AdminViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [_vista setProcess:[[Process alloc] initDemo]];
+    [_vista setNeedsDisplay];
     // Do any additional setup after loading the view.
 }
 

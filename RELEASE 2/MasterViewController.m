@@ -67,6 +67,7 @@
 }
     
 @property (nonatomic, strong) AppDelegate *appDelegate;
+@property (nonatomic, strong) NSMutableArray *arrConnectedDevices;
 
 -(void)didReceiveDataWithNotification:(NSNotification *)notification;
 
@@ -331,7 +332,28 @@
     machine5[0] =1;
     machine6[0] =1;
     machine7[0] =1;
+    NSData *dataToSend;
+    NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
+    NSError *error;
     
+    
+    for (int i = 0; i < [_arrConnectedDevices count]; i++)
+    {
+        NSArray *arreglo = @[allPeers[i]];
+        NSString *numMaquina = [NSString stringWithFormat:@"%d", i+1];
+        dataToSend  = [numMaquina dataUsingEncoding:NSUTF8StringEncoding];
+        [_appDelegate.mcManager.session sendData:dataToSend
+                                         toPeers:arreglo
+                                        withMode:MCSessionSendDataReliable
+                                           error:&error];
+    }
+    
+    
+    if (error) {
+        NSLog(@"%@", [error localizedDescription]);
+    }
+    //[but addTarget:self action:@selector(someMethod) forControlEvents:UIControlEventTouchUpInside];
+        [self performSegueWithIdentifier:@"adminScreen" sender:self];
 }
 
 -(void) pauseAll {

@@ -49,7 +49,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *tblConnectedDevices;
 
 - (IBAction)browseForDevices:(id)sender;
-- (IBAction)startGame:(id)sender;
+
 
 
 @end

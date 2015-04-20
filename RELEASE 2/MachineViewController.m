@@ -171,29 +171,7 @@
     
     
     
-    for (int x=0; x < (sizeof myInfo/sizeof(int)); x++)
-    {
-        if(x == (numMachine-1))
-        {
-            //Inicializacion de variables estaticas
-            
-            //Tiempo de Ajuste De La Maquina
-            self.minutosAjusteLabel.text = [self convertIntTimeToStringTime:onAdjustTime[x]];
-            self.segundosAjusteLabel.text = @"00";
-            
-            //Tiempo de Ajuste del Tipo de Material Circulo
-            self.minutosCirculoLabel.text = [self convertIntTimeToStringTime:onProdCircle[x]];
-            self.segundosCirculoLabel.text = @"00";
-            
-            //Tiempo de Ajuste del Tipo de Material Cuadrado
-            self.minutosCuadradoLabel.text = [self convertIntTimeToStringTime:onProdSquare[x]];
-            self.segundosCuadradoLabel.text = @"00";
-            
-            //Tiempo de Ajuste del Tipo de Material Triangulo
-            self.minutosTrianguloLabel.text = [self convertIntTimeToStringTime:onProdTriangle[x]];
-            self.segundosTrianguloLabel.text = @"00";
-        }
-    }
+
     
     //Deshabilitar compra de materiales si no es la maquina1
     if (numMachine >1)
@@ -205,6 +183,8 @@
     
     contadorProd = 0;
     [self createTimer];
+    [_vista setProcess:[[Process alloc] initDemo]];
+    [_vista setNeedsDisplay];
 
 }
 
