@@ -11,13 +11,7 @@
 @implementation Stage
 
 -(id)initWithRow:(NSInteger)r col:(NSInteger)c type:(NSInteger)t {
-    self = [super init];
-    _row = r;
-    _col = c;
-    _type = t;
-    _entrada = 0;
-    _salida = 0;
-    return self;
+    return [self initWithRow:r col:c type:t entrada:0];
 }
 
 -(id)initWithRow:(NSInteger)r col:(NSInteger)c type:(NSInteger)t entrada:(NSInteger)e {
@@ -27,6 +21,7 @@
     _type = t;
     _entrada = e;
     _salida = 0;
+    _encendida = NO;
     return self;
 }
 

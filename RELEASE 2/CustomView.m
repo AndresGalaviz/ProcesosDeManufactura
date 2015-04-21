@@ -20,16 +20,18 @@
     CGContextRef contexto = UIGraphicsGetCurrentContext();
     CGFloat width = self.frame.size.width/20;
     CGFloat height = self.frame.size.height/20;
-
+    
     NSString *titulo = @"Manufactura";
-    UIFont *font = [UIFont systemFontOfSize:14];
-    UIFont *font2 = [UIFont systemFontOfSize:10];
+    UIFont *font = [UIFont systemFontOfSize:(1.5*height)];
+    UIFont *font2 = [UIFont systemFontOfSize:(height*3/4)];
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:font, NSFontAttributeName, nil];
     NSDictionary *dict2 = [NSDictionary dictionaryWithObjectsAndKeys:font2, NSFontAttributeName, nil];
-    [titulo drawAtPoint:CGPointMake(210, 100) withAttributes:dict];
+    [titulo drawAtPoint:CGPointMake(13*width, 4*height) withAttributes:dict];
     
     NSMutableArray *countDestino = [[NSMutableArray alloc] init];
-
+    
+    CGContextSetLineWidth(contexto, 3);
+    
     for (int i = 0; i < _process.maquinas.count; i++) {
         Stage *stage = _process.maquinas[i];
         NSInteger relX, relY;
@@ -42,11 +44,19 @@
         CGContextSetFillColorWithColor(contexto, [UIColor lightGrayColor].CGColor);
         CGContextFillRect(contexto, theRect2);
         
+        if (stage.encendida) {
+            CGRect theRect3 = CGRectMake(relX, relY-height, width, 2*height);
+            CGContextSetStrokeColorWithColor(contexto, [UIColor yellowColor].CGColor);
+            CGContextStrokeRect(contexto, theRect3);
+        }
+        
+        
         NSString *entrada, *salida;
         entrada = @(stage.entrada).stringValue;
         salida = @(stage.salida).stringValue;
         if (![entrada isEqualToString:@"0"]) {
             //[entrada drawAtPoint:CGPointMake(relX, relY) withAttributes:dict2];
+            entrada = [[NSString alloc] initWithFormat:@" %@", entrada];
             [entrada drawInRect:theRect withAttributes:dict2];
         }
         if (![salida isEqualToString:@"0"]) {
@@ -57,8 +67,8 @@
         [countDestino addObject:@(0)];
     }
     CGContextSetLineWidth(contexto, 1.0);
-    CGContextSetFillColorWithColor(contexto, [UIColor blackColor].CGColor);
-
+    CGContextSetStrokeColorWithColor(contexto, [UIColor blackColor].CGColor);
+    
     
     for (int i = 0; i < _process.conecciones.count; i++) {
         NSMutableArray *destinos = _process.conecciones[i];
@@ -72,7 +82,7 @@
             Stage *destino = _process.maquinas[numMaquina];
             NSInteger indexDestino = [countDestino[numMaquina] integerValue] + 1;
             countDestino[numMaquina] = @(indexDestino);
-
+            
             relXdestino = 2*destino.col*width;
             relYdestino = (20 - 2*destino.row)*height - height + 1;
             inicioY = relYorigen + height;

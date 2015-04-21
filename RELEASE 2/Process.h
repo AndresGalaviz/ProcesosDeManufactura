@@ -16,5 +16,7 @@
 
 -(id) init;
 -(id) initDemo;
+-(NSString *) exportToString;
+-(void) importFromString:(NSString *)str;
 
 @end

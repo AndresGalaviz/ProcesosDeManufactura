@@ -15,6 +15,7 @@
 @property NSInteger type;
 @property NSInteger entrada;
 @property NSInteger salida;
+@property BOOL encendida;
 
 -(id)initWithRow:(NSInteger)r col:(NSInteger)c type:(NSInteger)t;
 -(id)initWithRow:(NSInteger)r col:(NSInteger)c type:(NSInteger)t entrada:(NSInteger)e;

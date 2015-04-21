@@ -22,7 +22,7 @@
     _maquinas = [[NSMutableArray alloc] init];
     _conecciones = [[NSMutableArray alloc] init];
     _numDestino = [[NSMutableArray alloc] init];
-
+    
     [_maquinas addObject:[[Stage alloc] initWithRow:1 col:1 type:1 entrada:3]];
     [_maquinas addObject:[[Stage alloc] initWithRow:1 col:2 type:1 entrada:8]];
     [_maquinas addObject:[[Stage alloc] initWithRow:1 col:5 type:2 entrada:6]];
@@ -72,5 +72,12 @@
     [_conecciones[origen] addObject:@(destino)];
     _numDestino[destino] = @([_numDestino[destino] integerValue] + 1);
 }
+
+-(NSString *)exportToString {
+    return @"";
+}
+
+-(void)importFromString:(NSString *)str {}
+
 
 @end
