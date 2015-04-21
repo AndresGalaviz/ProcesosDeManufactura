@@ -44,6 +44,7 @@
 
 #import "MasterViewController.h"
 #import "AppDelegate.h"
+#import "CustomView.h"
 
 @interface MasterViewController ()
 {
@@ -352,8 +353,18 @@
     if (error) {
         NSLog(@"%@", [error localizedDescription]);
     }
-    //[but addTarget:self action:@selector(someMethod) forControlEvents:UIControlEventTouchUpInside];
-        [self performSegueWithIdentifier:@"adminScreen" sender:self];
+    CGRect applicationFrame = CGRectMake(0, self.navigationController.view.frame.size.height, self.tableView.frame.size.width, self.tableView.frame.size.height - self.navigationController.view.frame.size.height);
+
+    
+    [self.tableView removeFromSuperview];
+    CustomView *contentView = [[CustomView alloc] initWithFrame:applicationFrame];
+    [contentView setProcess:[[Process alloc] initDemo]];
+    [contentView setNeedsDisplay];
+    [self.navigationController.view insertSubview:contentView belowSubview:self.navigationController.navigationBar];
+    
+    //TODO
+    
+
 }
 
 -(void) pauseAll {

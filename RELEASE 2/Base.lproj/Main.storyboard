@@ -659,16 +659,16 @@
                         <outlet property="pvMaquina6" destination="dIX-HW-cRT" id="XNG-Kz-r4C"/>
                         <outlet property="pvMaquina7" destination="ROf-xH-h9R" id="pxH-3S-dAh"/>
                         <segue destination="Srv-pJ-jV1" kind="modal" identifier="VerResultados" id="xJ7-6f-mIK"/>
-                        <segue destination="BZg-by-Iiu" kind="modal" identifier="adminScreen" id="weB-EV-Lqa"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P3O-mA-NcX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4171" y="162"/>
+            <point key="canvasLocation" x="4079" y="167"/>
         </scene>
         <!--Admin View Controller-->
         <scene sceneID="XVL-Vp-PA8">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PpJ-CE-fBC" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="BZg-by-Iiu" customClass="AdminViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Aks-8t-RcN"/>
@@ -688,7 +688,7 @@
                                     <navigationItem title="Title" id="JwR-P8-aAK">
                                         <barButtonItem key="leftBarButtonItem" title="Terminar" id="AXH-Cz-3NK">
                                             <connections>
-                                                <segue destination="Srv-pJ-jV1" kind="modal" id="okC-zK-Xbe"/>
+                                                <action selector="stopAll:" destination="BZg-by-Iiu" id="Kqs-gW-1U9"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -700,11 +700,11 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="vista" destination="6Le-uE-555" id="TyJ-L9-uCe"/>
+                        <segue destination="Srv-pJ-jV1" kind="modal" id="310-5Y-WZi"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PpJ-CE-fBC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5367" y="162"/>
+            <point key="canvasLocation" x="5189" y="162"/>
         </scene>
         <!--Machine View Controller-->
         <scene sceneID="d2Q-bd-PHf">
@@ -942,6 +942,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="okC-zK-Xbe"/>
+        <segue reference="xJ7-6f-mIK"/>
     </inferredMetricsTieBreakers>
 </document>

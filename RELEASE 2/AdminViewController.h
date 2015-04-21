@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "CustomView.h"
+#import "ResultsViewController.h"
 @interface AdminViewController : UIViewController
 @property (strong, nonatomic) IBOutlet CustomView *vista;
+- (IBAction)stopAll:(id)sender;
 
 @end
