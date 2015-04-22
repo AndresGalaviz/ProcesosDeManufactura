@@ -13,10 +13,15 @@
 @property NSMutableArray *maquinas;
 @property NSMutableArray *conecciones;
 @property NSMutableArray *numDestino;
+@property NSMutableArray *materiasPrima;
 
--(id) init;
--(id) initDemo;
--(NSString *) exportToString;
--(void) importFromString:(NSString *)str;
+-(id)init;
+-(id)initDemo;
+-(void)procesar;
+-(void)comprarMateriaPrima:(NSInteger)index cantidad:(NSInteger)cantidad;
+-(void)encenderMaquina:(NSInteger)index;
+-(void)apagarMaquina:(NSInteger)index;
+-(NSString *)exportToString;
+-(void)importFromString:(NSString *)receivedInfo;
 
 @end

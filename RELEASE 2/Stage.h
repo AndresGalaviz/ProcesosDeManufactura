@@ -13,11 +13,14 @@
 @property NSInteger row;
 @property NSInteger col;
 @property NSInteger type;
-@property NSInteger entrada;
-@property NSInteger salida;
+@property NSInteger tiempoDeEspera;
+@property NSInteger tiempoInterno;
+@property NSInteger producto;
+@property NSInteger materiaPrima;
 @property BOOL encendida;
 
 -(id)initWithRow:(NSInteger)r col:(NSInteger)c type:(NSInteger)t;
--(id)initWithRow:(NSInteger)r col:(NSInteger)c type:(NSInteger)t entrada:(NSInteger)e;
+-(id)initWithRow:(NSInteger)r col:(NSInteger)c type:(NSInteger)t tiempo:(NSInteger)ti;
+-(void)procesar;
 
 @end

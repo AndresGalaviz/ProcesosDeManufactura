@@ -11,18 +11,28 @@
 @implementation Stage
 
 -(id)initWithRow:(NSInteger)r col:(NSInteger)c type:(NSInteger)t {
-    return [self initWithRow:r col:c type:t entrada:0];
+    return [self initWithRow:r col:c type:t tiempo:0];
 }
 
--(id)initWithRow:(NSInteger)r col:(NSInteger)c type:(NSInteger)t entrada:(NSInteger)e {
+-(id)initWithRow:(NSInteger)r col:(NSInteger)c type:(NSInteger)t tiempo:(NSInteger)ti {
     self = [super init];
     _row = r;
     _col = c;
     _type = t;
-    _entrada = e;
-    _salida = 0;
+    _tiempoDeEspera = ti;
+    _tiempoInterno = ti;
+    _producto = 0;
+    _materiaPrima = -1;
     _encendida = NO;
     return self;
+}
+
+-(void)procesar {
+    _tiempoInterno -= 1;
+    if (_tiempoInterno == 0) {
+        _tiempoInterno = _tiempoDeEspera;
+        _producto += 1;
+    }
 }
 
 @end
