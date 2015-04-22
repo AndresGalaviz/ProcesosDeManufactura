@@ -353,16 +353,21 @@
     if (error) {
         NSLog(@"%@", [error localizedDescription]);
     }
-    CGRect applicationFrame = CGRectMake(0, self.navigationController.view.frame.size.height, self.tableView.frame.size.width, self.tableView.frame.size.height - self.navigationController.view.frame.size.height);
+    CGRect applicationFrame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height, self.tableView.frame.size.width, self.tableView.frame.size.height - self.navigationController.navigationBar.frame.size.height);
 
     
     [self.tableView removeFromSuperview];
     CustomView *contentView = [[CustomView alloc] initWithFrame:applicationFrame];
+    [contentView setBackgroundColor:[UIColor blueColor]];
     [contentView setProcess:[[Process alloc] initDemo]];
     [contentView setNeedsDisplay];
     [self.navigationController.view insertSubview:contentView belowSubview:self.navigationController.navigationBar];
     
     //TODO
+    
+    
+    
+    
     
 
 }
