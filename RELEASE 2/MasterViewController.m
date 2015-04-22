@@ -354,7 +354,7 @@
         NSLog(@"%@", [error localizedDescription]);
     }
     CGRect applicationFrame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height, self.tableView.frame.size.width, self.tableView.frame.size.height - self.navigationController.navigationBar.frame.size.height);
-
+    
     
     [self.tableView removeFromSuperview];
     CustomView *contentView = [[CustomView alloc] initWithFrame:applicationFrame];
