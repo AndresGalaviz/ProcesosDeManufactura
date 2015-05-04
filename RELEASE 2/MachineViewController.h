@@ -46,6 +46,7 @@
 #import "AppDelegate.h"
 #import "ResultsViewController.h"
 #import "CustomView.h"
+#import "CommunicationManager.h"
 
 @interface MachineViewController : ViewController
 @property (strong, nonatomic) IBOutlet UILabel *minutosTotalLabel;
@@ -94,5 +95,6 @@
 
 -(void)didReceiveDataWithNotification:(NSNotification *)notification;
 @property (strong, nonatomic) IBOutlet CustomView *vista;
+@property CommunicationManager *comCommunicationManager;
 
 @end

@@ -44,8 +44,6 @@
 
 #import "MasterViewController.h"
 #import "AppDelegate.h"
-#import "CustomView.h"
-
 @interface MasterViewController ()
 {
     NSString *minuto;
@@ -251,57 +249,36 @@
     
     UIBarButtonItem *pause = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause target:self action:@selector(pauseAll)];
     
-    time = [[UIBarButtonItem alloc]initWithTitle:tiempo
-                                    style:UIBarButtonItemStylePlain
-                                   target:self
-                                   action:nil];
-    
-        // asi se actualiza tiempo
-    time.title = @"00:00";
     
     self.navigationItem.rightBarButtonItems =
     [NSArray arrayWithObjects:pause, play, time, nil];
     
     [self initMachines];
     
-    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateMachines:) userInfo:nil repeats:YES];
+//    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateMachines:) userInfo:nil repeats:YES];
+    CGRect applicationFrame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height, self.tableView.frame.size.width, self.tableView.frame.size.height - self.navigationController.navigationBar.frame.size.height);
+    self.contentView = [[CustomView alloc] initWithFrame:applicationFrame];
+    [self.contentView setBackgroundColor:[UIColor lightGrayColor]];
+    [self.contentView setProcess:[[Process alloc] initDemo]];
+    [self.contentView setNeedsDisplay];
     
+//    for (int i = 0; i < self.contentView.process.maquinas.count; i++)
+//        [self.contentView.process encenderMaquina:i];
+    for (int i = 0; i < self.contentView.process.materiasPrima.count; i++)
+        [self.contentView.process comprarMateriaPrima:i cantidad:10];
+    
+    
+    CommunicationManager *cm = [[CommunicationManager alloc] initWithProcess:self.contentView.process asAdmin:NO];
+    [cm showMachinesWithType:5];
     [self createTimer];
     numMachine =0;
+    self.comCommunicationManager = [[CommunicationManager alloc] initWithProcess:self.contentView.process asAdmin:YES];
     self.estadosMaquinas = [[NSArray alloc] initWithObjects:@"",@"powerRed.png",@"powerGreen.png",@"powerYellow.png", nil];
     
    
 }
 
-- (NSTimer*)createTimer {
-    // create timer on run loop
-    return [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerTicked:) userInfo:nil repeats:YES];
-    
-}
 
-- (void)timerTicked:(NSTimer*)timer {
-    if (machine1[0] == 1) {
-        segundosInt ++;
-        
-        if (segundosInt >= 60) {
-            segundosInt = 0;
-            minutosInt ++;
-        }
-        if (segundosInt <= 9)
-            segundos = [NSString stringWithFormat: @"0%d", segundosInt];
-        else
-            segundos = [@(segundosInt) stringValue];
-        if (minutosInt <= 9)
-            minuto = [NSString stringWithFormat: @"0%d", minutosInt];
-        else
-            minuto = [@ (minutosInt) stringValue];
-        
-        NSString *tiempo = [NSString stringWithFormat: @"%@:%@", minuto, segundos];
-        
-
-        time.title = tiempo;
-    }
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -353,15 +330,11 @@
     if (error) {
         NSLog(@"%@", [error localizedDescription]);
     }
-    CGRect applicationFrame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height, self.tableView.frame.size.width, self.tableView.frame.size.height - self.navigationController.navigationBar.frame.size.height);
+
     
     
     [self.tableView removeFromSuperview];
-    CustomView *contentView = [[CustomView alloc] initWithFrame:applicationFrame];
-    [contentView setBackgroundColor:[UIColor blueColor]];
-    [contentView setProcess:[[Process alloc] initDemo]];
-    [contentView setNeedsDisplay];
-    [self.navigationController.view insertSubview:contentView belowSubview:self.navigationController.navigationBar];
+    [self.navigationController.view insertSubview:self.contentView belowSubview:self.navigationController.navigationBar];
     
     //TODO
     
@@ -370,6 +343,23 @@
     
     
 
+}
+
+
+- (NSTimer*)createTimer {
+    // create timer on run loop
+    return [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerTicked:) userInfo:nil repeats:YES];
+}
+
+- (void)timerTicked:(NSTimer*)timer {
+    if(machine1[0] == 1) {
+        [self.contentView.process procesar];
+        NSString *info = [self.comCommunicationManager getGeneralProcessStatus];
+        [self sendMyMessage:info];
+    //NSLog([_vista.process exportToString]);
+    //[_vista.process importFromString:[_vista.process exportToString]];
+        [self.contentView setNeedsDisplay];
+    }
 }
 
 -(void) pauseAll {
@@ -383,115 +373,118 @@
     
 }
 
-- (void)updateMachines:(NSTimer*)timer {
+//- (void)updateMachines:(NSTimer*)timer {
+//
+//    /*
+//     Pos0 = @"state" 1=Play; 2=Pause; 3=Stop,
+//     Pos1 =@"money",
+//     Pos2 =@"machine",
+//     Pos3 =@"materialActual" 1=Circulo; 2=Cuadrado; 3=Triangulo,
+//     Pos4 =@"power" 1=Off; 2=On; 3=Adjusting,
+//     Pos5 =@"materialInCirculo1",
+//     Pos6 =@"materialInCuadrado2",
+//     Pos7 =@"materialInTriangulo3",
+//     Pos8 =@"materialOutCirculo1",
+//     Pos9 =@"materialOutCuadrado2",
+//     Pos10 =@"materialOutTriangulo3",
+//     */
+//    
+//    self.estadoMaquina1.image = [UIImage imageNamed:[self.estadosMaquinas objectAtIndex:machine1[4]]];
+//    self.estadoMaquina2.image = [UIImage imageNamed:[self.estadosMaquinas objectAtIndex:machine2[4]]];
+//    self.estadoMaquina3.image = [UIImage imageNamed:[self.estadosMaquinas objectAtIndex:machine3[4]]];
+//    self.estadoMaquina4.image = [UIImage imageNamed:[self.estadosMaquinas objectAtIndex:machine4[4]]];
+//    self.estadoMaquina5.image = [UIImage imageNamed:[self.estadosMaquinas objectAtIndex:machine5[4]]];
+//    self.estadoMaquina6.image = [UIImage imageNamed:[self.estadosMaquinas objectAtIndex:machine6[4]]];
+//    self.estadoMaquina7.image = [UIImage imageNamed:[self.estadosMaquinas objectAtIndex:machine7[4]]];
+//    
+//    [self encodeStringToSend];
+//}
+//
 
-    /*
-     Pos0 = @"state" 1=Play; 2=Pause; 3=Stop,
-     Pos1 =@"money",
-     Pos2 =@"machine",
-     Pos3 =@"materialActual" 1=Circulo; 2=Cuadrado; 3=Triangulo,
-     Pos4 =@"power" 1=Off; 2=On; 3=Adjusting,
-     Pos5 =@"materialInCirculo1",
-     Pos6 =@"materialInCuadrado2",
-     Pos7 =@"materialInTriangulo3",
-     Pos8 =@"materialOutCirculo1",
-     Pos9 =@"materialOutCuadrado2",
-     Pos10 =@"materialOutTriangulo3",
-     */
-    
-    self.estadoMaquina1.image = [UIImage imageNamed:[self.estadosMaquinas objectAtIndex:machine1[4]]];
-    self.estadoMaquina2.image = [UIImage imageNamed:[self.estadosMaquinas objectAtIndex:machine2[4]]];
-    self.estadoMaquina3.image = [UIImage imageNamed:[self.estadosMaquinas objectAtIndex:machine3[4]]];
-    self.estadoMaquina4.image = [UIImage imageNamed:[self.estadosMaquinas objectAtIndex:machine4[4]]];
-    self.estadoMaquina5.image = [UIImage imageNamed:[self.estadosMaquinas objectAtIndex:machine5[4]]];
-    self.estadoMaquina6.image = [UIImage imageNamed:[self.estadosMaquinas objectAtIndex:machine6[4]]];
-    self.estadoMaquina7.image = [UIImage imageNamed:[self.estadosMaquinas objectAtIndex:machine7[4]]];
-    
-    [self encodeStringToSend];
-}
+//-(void)encodeStringToSend
+//{
+//    NSString *myInfoStr;
+//    NSString *encodedString1= @"";
+//    NSString *encodedString2= @"";
+//    NSString *encodedString3= @"";
+//    NSString *encodedString4= @"";
+//    NSString *encodedString5= @"";
+//    NSString *encodedString6= @"";
+//    NSString *encodedString7= @"";
+//
+//    for (int x=0; x < 11; x++)
+//    {
+//        myInfoStr = [NSString stringWithFormat:@"%d", machine1[x]];
+//        encodedString1 = [encodedString1 stringByAppendingString:myInfoStr];
+//        if(x!=10)
+//            encodedString1 = [encodedString1 stringByAppendingString:@"_"];
+//    }
+//    for (int x=0; x < 11; x++)
+//    {
+//        myInfoStr = [NSString stringWithFormat:@"%d", machine2[x]];
+//        encodedString2 = [encodedString2 stringByAppendingString:myInfoStr];
+//        if(x!=10)
+//            encodedString2 = [encodedString2 stringByAppendingString:@"_"];
+//    }
+//
+//    for (int x=0; x < 11; x++)
+//    {
+//        myInfoStr = [NSString stringWithFormat:@"%d", machine3[x]];
+//        encodedString3 = [encodedString3 stringByAppendingString:myInfoStr];
+//        if(x!=10)
+//            encodedString3 = [encodedString3 stringByAppendingString:@"_"];
+//    }
+//
+//    for (int x=0; x < 11; x++)
+//    {
+//        myInfoStr = [NSString stringWithFormat:@"%d", machine4[x]];
+//        encodedString4 = [encodedString4 stringByAppendingString:myInfoStr];
+//        if(x!=10)
+//            encodedString4 = [encodedString4 stringByAppendingString:@"_"];
+//    }
+//
+//    for (int x=0; x < 11; x++)
+//    {
+//        myInfoStr = [NSString stringWithFormat:@"%d", machine5[x]];
+//        encodedString5 = [encodedString5 stringByAppendingString:myInfoStr];
+//        if(x!=10)
+//            encodedString5 = [encodedString5 stringByAppendingString:@"_"];
+//    }
+//
+//    for (int x=0; x < 11; x++)
+//    {
+//        myInfoStr = [NSString stringWithFormat:@"%d", machine6[x]];
+//        encodedString6 = [encodedString6 stringByAppendingString:myInfoStr];
+//        if(x!=10)
+//            encodedString6 = [encodedString6 stringByAppendingString:@"_"];
+//    }
+//
+//    for (int x=0; x < 11; x++)
+//    {
+//        myInfoStr = [NSString stringWithFormat:@"%d", machine7[x]];
+//        encodedString7 = [encodedString7 stringByAppendingString:myInfoStr];
+//        if(x!=10)
+//            encodedString7 = [encodedString7 stringByAppendingString:@"_"];
+//    }
+//    
+//    NSString *encodedStringFinal =@"";
+//    encodedStringFinal = [encodedStringFinal stringByAppendingString:encodedString1];
+//    encodedStringFinal = [encodedStringFinal stringByAppendingString:@"/"];
+//    encodedStringFinal = [encodedStringFinal stringByAppendingString:encodedString2];
+//    encodedStringFinal = [encodedStringFinal stringByAppendingString:@"/"];
+//    encodedStringFinal = [encodedStringFinal stringByAppendingString:encodedString3];
+//    encodedStringFinal = [encodedStringFinal stringByAppendingString:@"/"];
+//    encodedStringFinal = [encodedStringFinal stringByAppendingString:encodedString4];
+//    encodedStringFinal = [encodedStringFinal stringByAppendingString:@"/"];
+//    encodedStringFinal = [encodedStringFinal stringByAppendingString:encodedString5];
+//    encodedStringFinal = [encodedStringFinal stringByAppendingString:@"/"];
+//    encodedStringFinal = [encodedStringFinal stringByAppendingString:encodedString6];
+//    encodedStringFinal = [encodedStringFinal stringByAppendingString:@"/"];
+//    encodedStringFinal = [encodedStringFinal stringByAppendingString:encodedString7];
+//    [self sendMyMessage:encodedStringFinal];
+//}
+//
 
--(void)encodeStringToSend
-{
-    NSString *myInfoStr;
-    NSString *encodedString1= @"";
-    NSString *encodedString2= @"";
-    NSString *encodedString3= @"";
-    NSString *encodedString4= @"";
-    NSString *encodedString5= @"";
-    NSString *encodedString6= @"";
-    NSString *encodedString7= @"";
-
-    for (int x=0; x < 11; x++)
-    {
-        myInfoStr = [NSString stringWithFormat:@"%d", machine1[x]];
-        encodedString1 = [encodedString1 stringByAppendingString:myInfoStr];
-        if(x!=10)
-            encodedString1 = [encodedString1 stringByAppendingString:@"_"];
-    }
-    for (int x=0; x < 11; x++)
-    {
-        myInfoStr = [NSString stringWithFormat:@"%d", machine2[x]];
-        encodedString2 = [encodedString2 stringByAppendingString:myInfoStr];
-        if(x!=10)
-            encodedString2 = [encodedString2 stringByAppendingString:@"_"];
-    }
-
-    for (int x=0; x < 11; x++)
-    {
-        myInfoStr = [NSString stringWithFormat:@"%d", machine3[x]];
-        encodedString3 = [encodedString3 stringByAppendingString:myInfoStr];
-        if(x!=10)
-            encodedString3 = [encodedString3 stringByAppendingString:@"_"];
-    }
-
-    for (int x=0; x < 11; x++)
-    {
-        myInfoStr = [NSString stringWithFormat:@"%d", machine4[x]];
-        encodedString4 = [encodedString4 stringByAppendingString:myInfoStr];
-        if(x!=10)
-            encodedString4 = [encodedString4 stringByAppendingString:@"_"];
-    }
-
-    for (int x=0; x < 11; x++)
-    {
-        myInfoStr = [NSString stringWithFormat:@"%d", machine5[x]];
-        encodedString5 = [encodedString5 stringByAppendingString:myInfoStr];
-        if(x!=10)
-            encodedString5 = [encodedString5 stringByAppendingString:@"_"];
-    }
-
-    for (int x=0; x < 11; x++)
-    {
-        myInfoStr = [NSString stringWithFormat:@"%d", machine6[x]];
-        encodedString6 = [encodedString6 stringByAppendingString:myInfoStr];
-        if(x!=10)
-            encodedString6 = [encodedString6 stringByAppendingString:@"_"];
-    }
-
-    for (int x=0; x < 11; x++)
-    {
-        myInfoStr = [NSString stringWithFormat:@"%d", machine7[x]];
-        encodedString7 = [encodedString7 stringByAppendingString:myInfoStr];
-        if(x!=10)
-            encodedString7 = [encodedString7 stringByAppendingString:@"_"];
-    }
-    
-    NSString *encodedStringFinal =@"";
-    encodedStringFinal = [encodedStringFinal stringByAppendingString:encodedString1];
-    encodedStringFinal = [encodedStringFinal stringByAppendingString:@"/"];
-    encodedStringFinal = [encodedStringFinal stringByAppendingString:encodedString2];
-    encodedStringFinal = [encodedStringFinal stringByAppendingString:@"/"];
-    encodedStringFinal = [encodedStringFinal stringByAppendingString:encodedString3];
-    encodedStringFinal = [encodedStringFinal stringByAppendingString:@"/"];
-    encodedStringFinal = [encodedStringFinal stringByAppendingString:encodedString4];
-    encodedStringFinal = [encodedStringFinal stringByAppendingString:@"/"];
-    encodedStringFinal = [encodedStringFinal stringByAppendingString:encodedString5];
-    encodedStringFinal = [encodedStringFinal stringByAppendingString:@"/"];
-    encodedStringFinal = [encodedStringFinal stringByAppendingString:encodedString6];
-    encodedStringFinal = [encodedStringFinal stringByAppendingString:@"/"];
-    encodedStringFinal = [encodedStringFinal stringByAppendingString:encodedString7];
-    [self sendMyMessage:encodedStringFinal];
-}
 
 
 -(void)sendMyMessage:(NSString *)stringToSend
@@ -538,17 +531,10 @@
 
 
 - (IBAction)stopAll:(id)sender {
-    machine1[0] =3;
-    machine2[0] =3;
-    machine3[0] =3;
-    machine4[0] =3;
-    machine5[0] =3;
-    machine6[0] =3;
-    machine7[0] =3;
-    
-    
+
+    NSString *data = @"00";
     dispatch_async(dispatch_get_main_queue(), ^(void) {
-        [self encodeStringToSend];
+        [self sendMyMessage:data];
         [self performSegueWithIdentifier: @"VerResultados" sender: self];
     });
 }

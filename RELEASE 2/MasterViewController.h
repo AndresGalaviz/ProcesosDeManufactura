@@ -44,7 +44,8 @@
 
 #import <UIKit/UIKit.h>
 #import "DetailViewController.h"
-
+#import "CustomView.h"
+#import "CommunicationManager.h"
 
 @interface MasterViewController : UITableViewController
 <UIPickerViewDelegate,UIPickerViewDataSource>
@@ -70,5 +71,7 @@
 
 @property NSArray* arrUsers;
 @property NSArray* estadosMaquinas;
+@property CustomView *contentView;
+@property CommunicationManager *comCommunicationManager;
 
 @end

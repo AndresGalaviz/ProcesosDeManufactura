@@ -134,6 +134,7 @@
             self.minutosTotalLabel.text = [@ (minutosInt) stringValue];
         
     }
+    
 }
 
 -(void)didReceiveDataWithNotification2:(NSNotification *)notification

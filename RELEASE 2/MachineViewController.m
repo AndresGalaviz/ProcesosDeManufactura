@@ -185,6 +185,7 @@
     [self createTimer];
     [_vista setProcess:[[Process alloc] initDemo]];
     [_vista setNeedsDisplay];
+    self.comCommunicationManager = [[CommunicationManager alloc] initWithProcess: _vista.process asAdmin: NO];
 
 }
 
@@ -217,92 +218,92 @@
 }
 
 - (void)timerTicked:(NSTimer*)timer {
+    [_vista setNeedsDisplay];
     
-    
-    if (myInfo[0] == 3){
-        dispatch_async(dispatch_get_main_queue(), ^(void) {
-            [self performSegueWithIdentifier: @"finJuego" sender: self];
-        });
-    }
-    if (myInfo[0] == 1) {
-        [self checkMaterialProduction];
-        segundos ++;
-        
-        if (segundos >= 60) {
-            segundos = 0;
-            minutos ++;
-        }
-        if (segundos <= 9)
-            self.segundosTotalLabel.text = [NSString stringWithFormat: @"0%d", segundos];
-        else
-            self.segundosTotalLabel.text = [@(segundos) stringValue];
-        if (minutos <= 9)
-            self.minutosTotalLabel.text = [NSString stringWithFormat: @"0%d", minutos];
-        else
-            self.minutosTotalLabel.text = [@ (minutos) stringValue];
-    }
-    [self sendMyMessage];
-    
-    myInfo[8] = 0;
-    myInfo[9] = 0;
-    myInfo[10] = 0;
+//    if (myInfo[0] == 3){
+//        dispatch_async(dispatch_get_main_queue(), ^(void) {
+//            [self performSegueWithIdentifier: @"finJuego" sender: self];
+//        });
+//    }
+//    if (myInfo[0] == 1) {
+//        [self checkMaterialProduction];
+//        segundos ++;
+//        
+//        if (segundos >= 60) {
+//            segundos = 0;
+//            minutos ++;
+//        }
+//        if (segundos <= 9)
+//            self.segundosTotalLabel.text = [NSString stringWithFormat: @"0%d", segundos];
+//        else
+//            self.segundosTotalLabel.text = [@(segundos) stringValue];
+//        if (minutos <= 9)
+//            self.minutosTotalLabel.text = [NSString stringWithFormat: @"0%d", minutos];
+//        else
+//            self.minutosTotalLabel.text = [@ (minutos) stringValue];
+//    }
+//    [self sendMyMessage];
+//    
+//    myInfo[8] = 0;
+//    myInfo[9] = 0;
+//    myInfo[10] = 0;
+//}
 }
 
-
--(void)decodeStringReceived:(NSString *)receivedInfo
-{
-    NSArray *machinesInfo = [receivedInfo componentsSeparatedByString:@"/"];
-    NSArray *myReceivedInfo= [machinesInfo[numMachine-1] componentsSeparatedByString:@"_"];
-
-    
-    myInfo[0] = [myReceivedInfo[0] intValue];
-    myInfo[1] = [myReceivedInfo[1] intValue];
-    self.updateDineroLabel = [@(myInfo[1]) stringValue];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.dineroLabel.text = self.updateDineroLabel;
-    });
-
-    if(numMachine >1)
-    {
-
-        myInfo[5] = [myReceivedInfo[5] intValue];
-        self.updateCirculoLabel = [@(myInfo[5]) stringValue];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.entradaCirculoLabel.text = self.updateCirculoLabel;
-        });
-        
-        myInfo[6] = [myReceivedInfo[6] intValue];
-        self.updateCuadradoLabel = [@(myInfo[6]) stringValue];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.entradaCuadradoLabel.text = self.updateCuadradoLabel;
-        });
-        
-        myInfo[7] = [myReceivedInfo[7] intValue];
-        self.updateTrianguloLabel = [@(myInfo[7]) stringValue];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.entradaTrianguloLabel.text = self.updateTrianguloLabel;
-        });
-
-    }
-    
-    
-
-    
-}
--(NSString *)encodeStringToSend
-{
-    NSString *myInfoStr[11];
-    NSString *encodedString = @"";
-    
-    for (int x=0; x < (sizeof myInfo/sizeof(int)); x++)
-    {
-        myInfoStr[x] = [NSString stringWithFormat:@"%d", myInfo[x]];
-        encodedString = [encodedString stringByAppendingString:myInfoStr[x]];
-        if(x!=(sizeof myInfo/sizeof(int) -1))
-            encodedString = [encodedString stringByAppendingString:@"_"];
-    }
-    return encodedString;
-}
+//-(void)decodeStringReceived:(NSString *)receivedInfo
+//{
+//    NSArray *machinesInfo = [receivedInfo componentsSeparatedByString:@"/"];
+//    NSArray *myReceivedInfo= [machinesInfo[numMachine-1] componentsSeparatedByString:@"_"];
+//
+//    NSString * data = [receivedInfo];
+//    myInfo[0] = [myReceivedInfo[0] intValue];
+//    myInfo[1] = [myReceivedInfo[1] intValue];
+//    self.updateDineroLabel = [@(myInfo[1]) stringValue];
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        self.dineroLabel.text = self.updateDineroLabel;
+//    });
+//
+//    if(numMachine >1)
+//    {
+//
+//        myInfo[5] = [myReceivedInfo[5] intValue];
+//        self.updateCirculoLabel = [@(myInfo[5]) stringValue];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            self.entradaCirculoLabel.text = self.updateCirculoLabel;
+//        });
+//        
+//        myInfo[6] = [myReceivedInfo[6] intValue];
+//        self.updateCuadradoLabel = [@(myInfo[6]) stringValue];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            self.entradaCuadradoLabel.text = self.updateCuadradoLabel;
+//        });
+//        
+//        myInfo[7] = [myReceivedInfo[7] intValue];
+//        self.updateTrianguloLabel = [@(myInfo[7]) stringValue];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            self.entradaTrianguloLabel.text = self.updateTrianguloLabel;
+//        });
+//
+//    }
+//    
+//    
+//
+//    
+//}
+//-(NSString *)encodeStringToSend
+//{
+//    NSString *myInfoStr[11];
+//    NSString *encodedString = @"";
+//    
+//    for (int x=0; x < (sizeof myInfo/sizeof(int)); x++)
+//    {
+//        myInfoStr[x] = [NSString stringWithFormat:@"%d", myInfo[x]];
+//        encodedString = [encodedString stringByAppendingString:myInfoStr[x]];
+//        if(x!=(sizeof myInfo/sizeof(int) -1))
+//            encodedString = [encodedString stringByAppendingString:@"_"];
+//    }
+//    return encodedString;
+//}
 
 
 - (IBAction)agregarCirculo:(id)sender
@@ -394,6 +395,7 @@
             [sender setImage:[UIImage imageNamed:@"squareGreen.png"] forState:UIControlStateNormal];
             [self.power setImage:[UIImage imageNamed:@"powerGreen.png"] forState:UIControlStateNormal];
         });
+        
 
     }
 
@@ -509,34 +511,33 @@
 }
 
 -(void)sendMyMessage{
-    NSString *data = [self encodeStringToSend];
+    NSString *data = [self.comCommunicationManager getGeneralProcessStatus];
     NSData *dataToSend = [data dataUsingEncoding:NSUTF8StringEncoding];
     NSArray *allPeers = self.appDelegate.mcManager.session.connectedPeers;
     NSError *error;
-    
-
 
     [self.appDelegate.mcManager.session sendData:dataToSend
                                      toPeers:allPeers
                                     withMode:MCSessionSendDataReliable
                                        error:&error];
-    
     if (error) {
         NSLog(@"%@", [error localizedDescription]);
     }
 }
 
 -(void)didReceiveDataWithNotification:(NSNotification *)notification{
-    MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
-    NSString *peerDisplayName = peerID.displayName;
-    
+
     NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
+    
     NSString *receivedText = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
-    
-    if([[receivedText componentsSeparatedByString:@"/"] count] > 1) {
-        [self decodeStringReceived:receivedText];
+
+    [self.comCommunicationManager receiveInformation:receivedText];
+
+    if(!_vista.process.activo) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                [self performSegueWithIdentifier: @"finJuego" sender: self];
+            });
     }
-    
     
 }
 
@@ -560,7 +561,7 @@
         
     }
 }
-
+@end
 /*
  #pragma mark - Navigation
  
@@ -571,5 +572,3 @@
  // Pass the selected object to the new view controller.
  }
  */
-
-@end
