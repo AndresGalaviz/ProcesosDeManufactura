@@ -2,6 +2,7 @@
 //  MCManager.h
 //  Prototipo para simulador de procesos de manufactura
 //  Juan Paulo Lara, Manuel Calzado y Andrés López De León
+//  Alberto Astiazarán, Andrés Galaviz
 //
 //  Fecha de creación: 10/24/14
 //  Fecha de última actualización: 11/17/14
@@ -40,6 +41,8 @@
 //  Juan Paulo Lara Rodríguez   <jplarar@gmail.com>
 //  Manuel Calzado              <mcm_maycod@hotmail.com>
 //  Andrés López De León        <agldeleon@gmail.com>
+//  Alberto Astiazarán          <a01240828@itesm.mx>
+//  Andrés Galaviz              <a01044679@itesm.mx>
 //
 
 #import <Foundation/Foundation.h>

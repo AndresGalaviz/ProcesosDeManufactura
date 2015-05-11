@@ -1,14 +1,15 @@
 //
-//  MCManager.h
+//  MachineViewController.m
 //  Prototipo para simulador de procesos de manufactura
 //  Juan Paulo Lara, Manuel Calzado y Andrés López De León
+//  Alberto Astiazarán, Andrés Galaviz
 //
 //  Fecha de creación: 10/24/14
-//  Fecha de última actualización: 11/17/14
+//  Fecha de última actualización: 05/10/15
 //  Descripción general: Archivo que se encarga de manejar las conexiones
 //  a traves de multipeer connectivity
 //
-//  Copyright (c) 2014 ITESM. All rights reserved.
+//  Copyright (c) 2014-2015 ITESM. All rights reserved.
 //
 //  This file is part of "Prototipo para simulador de procesos de manufactura".
 //
@@ -40,6 +41,8 @@
 //  Juan Paulo Lara Rodríguez   <jplarar@gmail.com>
 //  Manuel Calzado              <mcm_maycod@hotmail.com>
 //  Andrés López De León        <agldeleon@gmail.com>
+//  Alberto Astiazarán          <a01240828@itesm.mx>
+//  Andrés Galaviz              <a01044679@itesm.mx>
 //
 
 #import "MachineViewController.h"
@@ -128,7 +131,7 @@
 
 
 
-
+// Envía la información a los demás dispositivos
 -(void)sendMyMessage:(NSString *)stringToSend
 {
     NSData *dataToSend = [stringToSend dataUsingEncoding:NSUTF8StringEncoding];
@@ -146,6 +149,8 @@
         NSLog(@"%@", [error localizedDescription]);
     }
 }
+
+// Recibe información del administrador y la procesa por medio del CommunicationManager
 -(void)didReceiveDataWithNotification:(NSNotification *)notification{
 
     NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
@@ -177,6 +182,9 @@
         [[segue destinationViewController] setDatos:toResults];
     }
 }
+
+
+// Métodos IBAction para los botones de comprar material
 
 - (IBAction)comprarMaterialUno:(id)sender {
     NSString *datos = [self.comCommunicationManager buyMaterial:0 quantity:1];

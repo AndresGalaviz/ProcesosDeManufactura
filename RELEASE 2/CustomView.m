@@ -1,9 +1,37 @@
 //
 //  CustomView.m
-//  DibujarProceso
+//  Prototipo para simulador de procesos de manufactura
+//  Juan Paulo Lara, Manuel Calzado y Andrés López De León
+//  Alberto Astiazarán, Andrés Galaviz
 //
-//  Created by alumno on 15/04/15.
-//  Copyright (c) 2015 ITESM. All rights reserved.
+//
+//  Fecha de creación: 04/15/15.
+//  Fecha de última actualización: 10/05/15
+//  Descripción general: Clase que se encarga de mostrar el proceso a los usuarios.
+//
+//  Copyright (c) 2014-2015 ITESM. All rights reserved.
+//
+//  This file is part of "Prototipo para simulador de procesos de manufactura".
+//
+//  "Prototipo para simulador de procesos de manufactura" is free software:
+//  you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  "Prototipo para simulador de procesos de manufactura" is distributed in
+//  the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+//
+//  Authors:
+//
+//  Alberto Astiazarán          <a01240828@itesm.mx>
+//  Andrés Galaviz              <a01044679@itesm.mx>
 //
 
 #import "CustomView.h"
@@ -32,6 +60,7 @@
     [self drawInformacion:contexto width:width height:height];
 }
 
+// Dibuja las conecciones que indican que una máquina utiliza el producto de otra.
 - (void)drawConecciones:(CGContextRef)contexto width:(NSInteger)width height:(NSInteger)height {
     CGContextSetLineWidth(contexto, 1.0);
     NSMutableArray *countDestino = [[NSMutableArray alloc] init];
@@ -71,6 +100,7 @@
     }
 }
 
+// Dibuja la información sobre la materia prima utilizada en el proceso.
 - (void)drawMateriaPrima:(CGContextRef)contexto withDict:(NSDictionary *)dict width:(NSInteger)width height:(NSInteger)height{
     for (int i = 0; i < _process.materiasPrima.count; i++) {
         MateriaPrima *mp = _process.materiasPrima[i];
@@ -86,6 +116,7 @@
     }
 }
 
+// Dibuja cada máquina y la información que contiene.
 - (void)drawMaquinas:(CGContextRef)contexto withDict:(NSDictionary *)dict width:(NSInteger)width height:(NSInteger)height{
     CGContextSetLineWidth(contexto, 3);
     for (int i = 0; i < _process.maquinas.count; i++) {
@@ -119,6 +150,7 @@
     }
 }
 
+// Dibuja el ID de cada máquina para que pueda ser identificada.
 - (void)drawIdMaquinas:(CGContextRef)contexto width:(NSInteger)width height:(NSInteger)height {
     UIFont *font = [UIFont systemFontOfSize:(height*5/8)]; // change to white text
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:font, NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, nil];
@@ -135,6 +167,7 @@
     }
 }
 
+// Dibuja el tiempo y el dinero con el que se cuenta en el proceso.
 - (void)drawInformacion:(CGContextRef)contexto width:(NSInteger)width height:(NSInteger)height {
     UIFont *font = [UIFont systemFontOfSize:(height*3/2)];
     NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
