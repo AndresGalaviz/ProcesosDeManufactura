@@ -16,6 +16,7 @@
 @property NSMutableArray *materiasPrima;
 @property BOOL activo;
 @property NSInteger dinero;
+@property NSInteger presupuestoInicial;
 @property NSInteger minutos;
 @property NSInteger segundos;
 

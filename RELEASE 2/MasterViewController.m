@@ -48,13 +48,7 @@
 {
     NSString *minuto;
     NSString *segundos;
-    int machine1[11];
-    int machine2[11];
-    int machine3[11];
-    int machine4[11];
-    int machine5[11];
-    int machine6[11];
-    int machine7[11];
+    Boolean isPlaying;
     
     int segundosInt;
     int minutosInt;
@@ -75,146 +69,7 @@
 
 @implementation MasterViewController
 
--(void)initMachines
-{
- 
-    for (int x =0; x<11; x++)
-    {
-        machine1[x] =0;
-        machine2[x] =0;
-        machine3[x] =0;
-        machine4[x] =0;
-        machine5[x] =0;
-        machine6[x] =0;
-        machine7[x] =0;
 
-    }
-    [self pauseAll];
-    
-    machine1[1] =100000;
-    machine2[1] =100000;
-    machine3[1] =100000;
-    machine4[1] =100000;
-    machine5[1] =100000;
-    machine6[1] =100000;
-    machine7[1] =100000;
-}
-
--(void)decodeStringReceived:(NSString *)receivedInfo
-{
-    /*
-     Pos0 = @"state" 1=Play; 2=Pause; 3=Stop,
-     Pos1 =@"money",
-     Pos2 =@"machine",
-     Pos3 =@"currentMaterial" 1=Circulo; 2=Cuadrado; 3=Triangulo,
-     Pos4 =@"power" 1=Off; 2=On; 3=Adjusting,
-     Pos5 =@"materialInCirculo1",
-     Pos6 =@"materialInCuadrado2",
-     Pos7 =@"materialInTriangulo3",
-     Pos8 =@"materialOutCirculo1",
-     Pos9 =@"materialOutCuadrado2",
-     Pos10 =@"materialOutTriangulo3",
-     */
-    
-    
-    NSArray *myReceivedInfo= [receivedInfo componentsSeparatedByString:@"_"];
-    int receivedInfoInt[11];
-    
-    for (int x=0; x < 11; x++)
-        receivedInfoInt[x] = [myReceivedInfo[x] intValue];
-    
-    
-    switch (receivedInfoInt[2]) {
-        case 1:
-            for (int x =1; x<11; x++)
-            {
-                machine1[x] =receivedInfoInt[x];
-            }
-            //Actualizar los materiales de entrada de la maquina siguiente con los materiales de salida de la maquina actual
-            if (machine1[8]!=0) machine2[5] = machine2[5] + 1;
-            if (machine1[9]!=0) machine2[6] = machine2[6] + 1;
-            if (machine1[10]!=0) machine2[7] = machine2[7] + 1;
-            //Actualiza dinero de todas las maquinas
-            machine2[1]=machine1[1];
-            machine3[1]=machine1[1];
-            machine4[1]=machine1[1];
-            machine5[1]=machine1[1];
-            machine6[1]=machine1[1];
-            machine7[1]=machine1[1];
-            break;
-        case 2:
-            for (int x =1; x<11; x++)
-            {
-                machine2[x] =receivedInfoInt[x];
-            }
-            //Actualizar los materiales de entrada de la maquina siguiente con los materiales de salida de la maquina actual
-            if (machine2[8]!=0) machine3[5] = machine3[5] + 1;
-            if (machine2[9]!=0) machine3[6] = machine3[6] + 1;
-            if (machine2[10]!=0) machine3[7] = machine3[7] + 1;
-            break;
-        case 3:
-            for (int x =1; x<11; x++)
-            {
-                machine3[x] =receivedInfoInt[x];
-            }
-            //Actualizar los materiales de entrada de la maquina siguiente con los materiales de salida de la maquina actual
-            if (machine3[8]!=0) machine4[5] = machine4[5] + 1;
-            if (machine3[9]!=0) machine4[6] = machine4[6] + 1;
-            if (machine3[10]!=0) machine4[7] = machine4[7] + 1;
-            break;
-        case 4:
-            for (int x =1; x<11; x++)
-            {
-                machine4[x] =receivedInfoInt[x];
-            }
-            //Actualizar los materiales de entrada de la maquina siguiente con los materiales de salida de la maquina actual
-            if (machine4[8]!=0) machine5[5] = machine5[5] + 1;
-            if (machine4[9]!=0) machine5[6] = machine5[6] + 1;
-            if (machine4[10]!=0) machine5[7] = machine5[7] + 1;
-            break;
-        case 5:
-            for (int x =1; x<11; x++)
-            {
-                machine5[x] =receivedInfoInt[x];
-            }
-            //Actualizar los materiales de entrada de la maquina siguiente con los materiales de salida de la maquina actual
-            if (machine5[8]!=0) machine6[5] = machine6[5] + 1;
-            if (machine5[9]!=0) machine6[6] = machine6[6] + 1;
-            if (machine5[10]!=0) machine6[7] = machine6[7] + 1;
-            break;
-        case 6:
-            for (int x =1; x<11; x++)
-            {
-                machine6[x] =receivedInfoInt[x];
-            }
-            //Actualizar los materiales de entrada de la maquina siguiente con los materiales de salida de la maquina actual
-            if (machine6[8]!=0) machine7[5] = machine7[5] + 1;
-            if (machine6[9]!=0) machine7[6] = machine7[6] + 1;
-            if (machine6[10]!=0) machine7[7] = machine7[7] + 1;
-            break;
-        case 7:
-            for (int x =1; x<11; x++)
-            {
-                machine7[x] =receivedInfoInt[x];
-            }
-            machine1[1] += (machine7[8] * prodPrice[0]) + (machine7[9] * prodPrice[1]) + (machine7[10] * prodPrice[1]);
-            break;
-            
-            
-    }
-    
-    machine2[1]=machine1[1];
-    machine3[1]=machine1[1];
-    machine4[1]=machine1[1];
-    machine5[1]=machine1[1];
-    machine6[1]=machine1[1];
-    machine7[1]=machine1[1];
-    
-    
-    
-    
-    
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -225,9 +80,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     //Inicializar precios de cada material
-    prodPrice[0]=7000;
-    prodPrice[1]=4000;
-    prodPrice[2]=10000;
+
     
     _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
@@ -237,7 +90,7 @@
                                                object:nil];
     
 
-    
+    isPlaying = NO;
     minuto = @"00";
     segundos = @"00";
     
@@ -253,23 +106,23 @@
     self.navigationItem.rightBarButtonItems =
     [NSArray arrayWithObjects:pause, play, time, nil];
     
-    [self initMachines];
     
 //    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateMachines:) userInfo:nil repeats:YES];
     CGRect applicationFrame = CGRectMake(0, self.navigationController.navigationBar.frame.size.height, self.tableView.frame.size.width, self.tableView.frame.size.height - self.navigationController.navigationBar.frame.size.height);
     self.contentView = [[CustomView alloc] initWithFrame:applicationFrame];
-    [self.contentView setBackgroundColor:[UIColor lightGrayColor]];
+    [self.contentView setBackgroundColor:[UIColor colorWithRed:200 green:200 blue:255 alpha:0.8]];
     [self.contentView setProcess:[[Process alloc] initDemo]];
     [self.contentView setNeedsDisplay];
     
-//    for (int i = 0; i < self.contentView.process.maquinas.count; i++)
-//        [self.contentView.process encenderMaquina:i];
+
     for (int i = 0; i < self.contentView.process.materiasPrima.count; i++)
         [self.contentView.process comprarMateriaPrima:i cantidad:10];
     
     
     CommunicationManager *cm = [[CommunicationManager alloc] initWithProcess:self.contentView.process asAdmin:NO];
-    [cm showMachinesWithType:5];
+    for(int i=0; i <=5; i++) {
+        [cm showMachinesWithType:i];
+    }
     [self createTimer];
     numMachine =0;
     self.comCommunicationManager = [[CommunicationManager alloc] initWithProcess:self.contentView.process asAdmin:YES];
@@ -303,13 +156,7 @@
 }
 
 -(void) playAll{
-    machine1[0] =1;
-    machine2[0] =1;
-    machine3[0] =1;
-    machine4[0] =1;
-    machine5[0] =1;
-    machine6[0] =1;
-    machine7[0] =1;
+    isPlaying = YES;
     NSData *dataToSend;
     NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
     NSError *error;
@@ -336,12 +183,6 @@
     [self.tableView removeFromSuperview];
     [self.navigationController.view insertSubview:self.contentView belowSubview:self.navigationController.navigationBar];
     
-    //TODO
-    
-    
-    
-    
-    
 
 }
 
@@ -352,7 +193,7 @@
 }
 
 - (void)timerTicked:(NSTimer*)timer {
-    if(machine1[0] == 1) {
+    if(isPlaying) {
         [self.contentView.process procesar];
         NSString *info = [self.comCommunicationManager getGeneralProcessStatus];
         [self sendMyMessage:info];
@@ -363,127 +204,10 @@
 }
 
 -(void) pauseAll {
-    machine1[0]=2;
-    machine2[0] =2;
-    machine3[0] =2;
-    machine4[0] =2;
-    machine5[0] =2;
-    machine6[0] =2;
-    machine7[0] =2;
+    isPlaying = NO;
     
 }
 
-//- (void)updateMachines:(NSTimer*)timer {
-//
-//    /*
-//     Pos0 = @"state" 1=Play; 2=Pause; 3=Stop,
-//     Pos1 =@"money",
-//     Pos2 =@"machine",
-//     Pos3 =@"materialActual" 1=Circulo; 2=Cuadrado; 3=Triangulo,
-//     Pos4 =@"power" 1=Off; 2=On; 3=Adjusting,
-//     Pos5 =@"materialInCirculo1",
-//     Pos6 =@"materialInCuadrado2",
-//     Pos7 =@"materialInTriangulo3",
-//     Pos8 =@"materialOutCirculo1",
-//     Pos9 =@"materialOutCuadrado2",
-//     Pos10 =@"materialOutTriangulo3",
-//     */
-//    
-//    self.estadoMaquina1.image = [UIImage imageNamed:[self.estadosMaquinas objectAtIndex:machine1[4]]];
-//    self.estadoMaquina2.image = [UIImage imageNamed:[self.estadosMaquinas objectAtIndex:machine2[4]]];
-//    self.estadoMaquina3.image = [UIImage imageNamed:[self.estadosMaquinas objectAtIndex:machine3[4]]];
-//    self.estadoMaquina4.image = [UIImage imageNamed:[self.estadosMaquinas objectAtIndex:machine4[4]]];
-//    self.estadoMaquina5.image = [UIImage imageNamed:[self.estadosMaquinas objectAtIndex:machine5[4]]];
-//    self.estadoMaquina6.image = [UIImage imageNamed:[self.estadosMaquinas objectAtIndex:machine6[4]]];
-//    self.estadoMaquina7.image = [UIImage imageNamed:[self.estadosMaquinas objectAtIndex:machine7[4]]];
-//    
-//    [self encodeStringToSend];
-//}
-//
-
-//-(void)encodeStringToSend
-//{
-//    NSString *myInfoStr;
-//    NSString *encodedString1= @"";
-//    NSString *encodedString2= @"";
-//    NSString *encodedString3= @"";
-//    NSString *encodedString4= @"";
-//    NSString *encodedString5= @"";
-//    NSString *encodedString6= @"";
-//    NSString *encodedString7= @"";
-//
-//    for (int x=0; x < 11; x++)
-//    {
-//        myInfoStr = [NSString stringWithFormat:@"%d", machine1[x]];
-//        encodedString1 = [encodedString1 stringByAppendingString:myInfoStr];
-//        if(x!=10)
-//            encodedString1 = [encodedString1 stringByAppendingString:@"_"];
-//    }
-//    for (int x=0; x < 11; x++)
-//    {
-//        myInfoStr = [NSString stringWithFormat:@"%d", machine2[x]];
-//        encodedString2 = [encodedString2 stringByAppendingString:myInfoStr];
-//        if(x!=10)
-//            encodedString2 = [encodedString2 stringByAppendingString:@"_"];
-//    }
-//
-//    for (int x=0; x < 11; x++)
-//    {
-//        myInfoStr = [NSString stringWithFormat:@"%d", machine3[x]];
-//        encodedString3 = [encodedString3 stringByAppendingString:myInfoStr];
-//        if(x!=10)
-//            encodedString3 = [encodedString3 stringByAppendingString:@"_"];
-//    }
-//
-//    for (int x=0; x < 11; x++)
-//    {
-//        myInfoStr = [NSString stringWithFormat:@"%d", machine4[x]];
-//        encodedString4 = [encodedString4 stringByAppendingString:myInfoStr];
-//        if(x!=10)
-//            encodedString4 = [encodedString4 stringByAppendingString:@"_"];
-//    }
-//
-//    for (int x=0; x < 11; x++)
-//    {
-//        myInfoStr = [NSString stringWithFormat:@"%d", machine5[x]];
-//        encodedString5 = [encodedString5 stringByAppendingString:myInfoStr];
-//        if(x!=10)
-//            encodedString5 = [encodedString5 stringByAppendingString:@"_"];
-//    }
-//
-//    for (int x=0; x < 11; x++)
-//    {
-//        myInfoStr = [NSString stringWithFormat:@"%d", machine6[x]];
-//        encodedString6 = [encodedString6 stringByAppendingString:myInfoStr];
-//        if(x!=10)
-//            encodedString6 = [encodedString6 stringByAppendingString:@"_"];
-//    }
-//
-//    for (int x=0; x < 11; x++)
-//    {
-//        myInfoStr = [NSString stringWithFormat:@"%d", machine7[x]];
-//        encodedString7 = [encodedString7 stringByAppendingString:myInfoStr];
-//        if(x!=10)
-//            encodedString7 = [encodedString7 stringByAppendingString:@"_"];
-//    }
-//    
-//    NSString *encodedStringFinal =@"";
-//    encodedStringFinal = [encodedStringFinal stringByAppendingString:encodedString1];
-//    encodedStringFinal = [encodedStringFinal stringByAppendingString:@"/"];
-//    encodedStringFinal = [encodedStringFinal stringByAppendingString:encodedString2];
-//    encodedStringFinal = [encodedStringFinal stringByAppendingString:@"/"];
-//    encodedStringFinal = [encodedStringFinal stringByAppendingString:encodedString3];
-//    encodedStringFinal = [encodedStringFinal stringByAppendingString:@"/"];
-//    encodedStringFinal = [encodedStringFinal stringByAppendingString:encodedString4];
-//    encodedStringFinal = [encodedStringFinal stringByAppendingString:@"/"];
-//    encodedStringFinal = [encodedStringFinal stringByAppendingString:encodedString5];
-//    encodedStringFinal = [encodedStringFinal stringByAppendingString:@"/"];
-//    encodedStringFinal = [encodedStringFinal stringByAppendingString:encodedString6];
-//    encodedStringFinal = [encodedStringFinal stringByAppendingString:@"/"];
-//    encodedStringFinal = [encodedStringFinal stringByAppendingString:encodedString7];
-//    [self sendMyMessage:encodedStringFinal];
-//}
-//
 
 
 
@@ -507,15 +231,11 @@
 
 -(void)didReceiveDataWithNotification:(NSNotification *)notification{
 
-    MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
-    NSString *peerDisplayName = peerID.displayName;
     
     NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
     NSString *receivedText = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
     
-    [self decodeStringReceived:receivedText];
-    
-    
+    [self.comCommunicationManager receiveInformation:receivedText];
 }
 
 
@@ -542,23 +262,16 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSString *tiempo = @"";
-    tiempo = [tiempo stringByAppendingString:minuto];
-    tiempo = [tiempo stringByAppendingString:@":"];
-    tiempo = [tiempo stringByAppendingString:segundos];
+    NSString *info = [self.comCommunicationManager getGeneralProcessStatus];
+    NSArray *myReceivedInfo= [info componentsSeparatedByString:@"_"];
     
-    if ([[segue identifier] isEqualToString:@"adminAMaquina"]) {
-        
-        NSDictionary *toDetail = [[NSDictionary alloc] initWithObjectsAndKeys:[@(numMachine) stringValue],@"numMachine",[@(minutosInt) stringValue], @"minutosInt",[@(segundosInt) stringValue],@"segundosInt", nil];
-        [[segue destinationViewController] setDatos:toDetail];
-
-    }
     
+    NSString *tiempo = [NSString stringWithFormat:@"%@:%@", myReceivedInfo[2], myReceivedInfo[3]];
+    //NSLog(info);
     if ([[segue identifier] isEqualToString:@"VerResultados"]) {
         
-        NSDictionary *toResults = [[NSDictionary alloc] initWithObjectsAndKeys:[@(100000) stringValue],@"presupuestoInicial",[@(machine1[1]) stringValue], @"presupuestoFinal",[@(7) stringValue],@"participantes",[@(machine7[8] + machine7[9] + machine7[10]) stringValue],@"productosProcesados",tiempo,@"tiempoTotal", nil];
+        NSDictionary *toResults = [[NSDictionary alloc] initWithObjectsAndKeys:[@(self.comCommunicationManager.process.presupuestoInicial) stringValue],@"presupuestoInicial",myReceivedInfo[1], @"presupuestoFinal",tiempo,@"tiempoTotal", nil];
         [[segue destinationViewController] setDatos:toResults];
-        
     }
 }
 

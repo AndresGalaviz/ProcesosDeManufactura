@@ -49,37 +49,7 @@
 #import "CommunicationManager.h"
 
 @interface MachineViewController : ViewController
-@property (strong, nonatomic) IBOutlet UILabel *minutosTotalLabel;
-@property (strong, nonatomic) IBOutlet UILabel *segundosTotalLabel;
-@property (strong, nonatomic) IBOutlet UILabel *numeroMaquinaLabel;
-@property (strong, nonatomic) IBOutlet UILabel *entradaCirculoLabel;
-@property (strong, nonatomic) IBOutlet UILabel *entradaCuadradoLabel;
-@property (strong, nonatomic) IBOutlet UILabel *entradaTrianguloLabel;
-@property (strong, nonatomic) IBOutlet UILabel *dineroLabel;
 
-@property (strong, nonatomic) IBOutlet UILabel *estadoLabel;
-@property (weak, nonatomic) IBOutlet UIButton *circle;
-@property (weak, nonatomic) IBOutlet UIButton *square;
-@property (weak, nonatomic) IBOutlet UIButton *triangle;
-@property (strong, nonatomic) IBOutlet UIButton *power;
-
-@property (strong, nonatomic) IBOutlet UIButton *agregarCirculo;
-@property (strong, nonatomic) IBOutlet UIButton *agregarCuadrado;
-@property (strong, nonatomic) IBOutlet UIButton *agregarTriangulo;
-
-//imagenes botones
-- (IBAction)selectCirculoButton:(id)sender;
-- (IBAction)selectCuadradoButton:(id)sender;
-- (IBAction)selectTrianguloLabel:(id)sender;
-- (IBAction)changePowerButton:(id)sender;
-
--(void)setMachineNumber:(int)num;
-
-
-//agregar materiales
-- (IBAction)agregarCirculo:(id)sender;
-- (IBAction)agregarCuadrado:(id)sender;
-- (IBAction)agregarTriangulo:(id)sender;
 
 
 @property (nonatomic, strong) AppDelegate *appDelegate;
@@ -96,5 +66,13 @@
 -(void)didReceiveDataWithNotification:(NSNotification *)notification;
 @property (strong, nonatomic) IBOutlet CustomView *vista;
 @property CommunicationManager *comCommunicationManager;
+- (IBAction)comprarMaterialUno:(id)sender;
+- (IBAction)comprarMaterialDos:(id)sender;
+- (IBAction)comprarMaterialTres:(id)sender;
+- (IBAction)comprarMaterialCuatro:(id)sender;
+- (IBAction)comprarMaterialCinco:(id)sender;
+
+- (IBAction)encenderMaquina:(id)sender;
+- (IBAction)apagarMaquina:(id)sender;
 
 @end

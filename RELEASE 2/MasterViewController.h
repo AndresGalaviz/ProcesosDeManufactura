@@ -49,13 +49,7 @@
 
 @interface MasterViewController : UITableViewController
 <UIPickerViewDelegate,UIPickerViewDataSource>
-@property (strong, nonatomic) IBOutlet UIImageView *estadoMaquina1;
-@property (strong, nonatomic) IBOutlet UIImageView *estadoMaquina2;
-@property (strong, nonatomic) IBOutlet UIImageView *estadoMaquina3;
-@property (strong, nonatomic) IBOutlet UIImageView *estadoMaquina4;
-@property (strong, nonatomic) IBOutlet UIImageView *estadoMaquina5;
-@property (strong, nonatomic) IBOutlet UIImageView *estadoMaquina6;
-@property (strong, nonatomic) IBOutlet UIImageView *estadoMaquina7;
+
 
 @property (strong, nonatomic) IBOutlet UIPickerView *pvMaquina1;
 @property (strong, nonatomic) IBOutlet UIPickerView *pvMaquina2;

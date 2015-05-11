@@ -52,7 +52,7 @@
         } else if ([info characterAtIndex:2] == '1') {
             NSInteger numMachine = [myReceivedInfo[1] integerValue];
             [_process apagarMaquina:numMachine];
-        }  else if ([info characterAtIndex:2] == '1') {
+        }  else if ([info characterAtIndex:2] == '2') {
             NSInteger numMaterial = [myReceivedInfo[1] integerValue];
             NSInteger quantity = [myReceivedInfo[2] integerValue];
             [_process comprarMateriaPrima:numMaterial cantidad:quantity];

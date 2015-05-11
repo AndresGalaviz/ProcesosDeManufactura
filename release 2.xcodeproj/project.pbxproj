@@ -12,6 +12,7 @@
 		2DCA8C721AF71F8C00725C61 /* MateriaPrima.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DCA8C6D1AF71F8C00725C61 /* MateriaPrima.m */; };
 		2DCA8C731AF71F8C00725C61 /* CustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DCA8C6F1AF71F8C00725C61 /* CustomView.m */; };
 		2DCA8C761AF71FBF00725C61 /* CommunicationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DCA8C751AF71FBF00725C61 /* CommunicationManager.m */; };
+		2DCA8C7A1AF82EBB00725C61 /* more.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DCA8C791AF82EBB00725C61 /* more.png */; };
 		C12A9B8D1A275F39003D2899 /* squareYellow.png in Resources */ = {isa = PBXBuildFile; fileRef = C12A9B8C1A275F39003D2899 /* squareYellow.png */; };
 		C12A9B8F1A275F4E003D2899 /* circleYellow.png in Resources */ = {isa = PBXBuildFile; fileRef = C12A9B8E1A275F4E003D2899 /* circleYellow.png */; };
 		C12A9B911A275F67003D2899 /* triangleYellow.png in Resources */ = {isa = PBXBuildFile; fileRef = C12A9B901A275F67003D2899 /* triangleYellow.png */; };
@@ -57,7 +58,6 @@
 		D5CC76D41A27115700402297 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = D5CC76B81A27115700402297 /* circle.png */; };
 		D5CC76D51A27115700402297 /* triangle.png in Resources */ = {isa = PBXBuildFile; fileRef = D5CC76B91A27115700402297 /* triangle.png */; };
 		D5CC76D61A27115700402297 /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = D5CC76BA1A27115700402297 /* square.png */; };
-		FB2B01651AE5BE250073857D /* AdminViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB2B01641AE5BE250073857D /* AdminViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +81,7 @@
 		2DCA8C6F1AF71F8C00725C61 /* CustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomView.m; sourceTree = "<group>"; };
 		2DCA8C741AF71FBF00725C61 /* CommunicationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommunicationManager.h; sourceTree = "<group>"; };
 		2DCA8C751AF71FBF00725C61 /* CommunicationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommunicationManager.m; sourceTree = "<group>"; };
+		2DCA8C791AF82EBB00725C61 /* more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more.png; sourceTree = "<group>"; };
 		C12A9B8C1A275F39003D2899 /* squareYellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = squareYellow.png; path = ../squareYellow.png; sourceTree = "<group>"; };
 		C12A9B8E1A275F4E003D2899 /* circleYellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = circleYellow.png; path = ../circleYellow.png; sourceTree = "<group>"; };
 		C12A9B901A275F67003D2899 /* triangleYellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = triangleYellow.png; path = ../triangleYellow.png; sourceTree = "<group>"; };
@@ -139,8 +140,6 @@
 		D5CC76B81A27115700402297 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
 		D5CC76B91A27115700402297 /* triangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle.png; sourceTree = "<group>"; };
 		D5CC76BA1A27115700402297 /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square.png; sourceTree = "<group>"; };
-		FB2B01631AE5BE250073857D /* AdminViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdminViewController.h; sourceTree = "<group>"; };
-		FB2B01641AE5BE250073857D /* AdminViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdminViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,8 +189,6 @@
 				2DCA8C6D1AF71F8C00725C61 /* MateriaPrima.m */,
 				2DCA8C6E1AF71F8C00725C61 /* CustomView.h */,
 				2DCA8C6F1AF71F8C00725C61 /* CustomView.m */,
-				FB2B01631AE5BE250073857D /* AdminViewController.h */,
-				FB2B01641AE5BE250073857D /* AdminViewController.m */,
 				2DCA8C741AF71FBF00725C61 /* CommunicationManager.h */,
 				2DCA8C751AF71FBF00725C61 /* CommunicationManager.m */,
 				C12EF41C1A1AF0790053C202 /* img */,
@@ -250,6 +247,7 @@
 		C12EF41C1A1AF0790053C202 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				2DCA8C791AF82EBB00725C61 /* more.png */,
 				C12A9B901A275F67003D2899 /* triangleYellow.png */,
 				C12A9B8E1A275F4E003D2899 /* circleYellow.png */,
 				C12A9B8C1A275F39003D2899 /* squareYellow.png */,
@@ -393,6 +391,7 @@
 				C12A9B911A275F67003D2899 /* triangleYellow.png in Resources */,
 				D5CC76C71A27115700402297 /* triangleGreen.png in Resources */,
 				D5CC76C41A27115700402297 /* circleGreen.png in Resources */,
+				2DCA8C7A1AF82EBB00725C61 /* more.png in Resources */,
 				D5CC76CD1A27115700402297 /* moneybag.png in Resources */,
 				D5CC76C21A27115700402297 /* powerYellow.png in Resources */,
 				D5CC76D01A27115700402297 /* squareGreen.png in Resources */,
@@ -427,7 +426,6 @@
 				2DCA8C731AF71F8C00725C61 /* CustomView.m in Sources */,
 				2DCA8C721AF71F8C00725C61 /* MateriaPrima.m in Sources */,
 				C12EF47D1A1B0AC60053C202 /* DetailViewController.m in Sources */,
-				FB2B01651AE5BE250073857D /* AdminViewController.m in Sources */,
 				2DCA8C711AF71F8C00725C61 /* Stage.m in Sources */,
 				C12EF4801A1B0B080053C202 /* MasterViewController.m in Sources */,
 				C12EF3E41A1AD0220053C202 /* AppDelegate.m in Sources */,

@@ -56,8 +56,7 @@
     self.presupuestoInicial.text = [self.datos valueForKey:@"presupuestoInicial"];
     self.presupuestoFinal.text = [self.datos valueForKey:@"presupuestoFinal"];
     self.tiempoTotal.text = [self.datos valueForKey:@"tiempoTotal"];
-    self.productosProcesados.text = [self.datos valueForKey:@"productosProcesados"];
-    self.participantes.text = [self.datos valueForKey:@"participantes"];
+
     
 }
 

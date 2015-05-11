@@ -30,14 +30,15 @@
     _materiasPrima = [[NSMutableArray alloc] init];
     _activo = YES;
     _dinero = 3000;
+    _presupuestoInicial = _dinero;
     _minutos = 0;
     _segundos = 0;
     
     [_materiasPrima addObject:[[MateriaPrima alloc] initWithPrecio:1 posicion:0]];
-    [_materiasPrima addObject:[[MateriaPrima alloc] initWithPrecio:1 posicion:1]];
-    [_materiasPrima addObject:[[MateriaPrima alloc] initWithPrecio:1 posicion:4]];
-    [_materiasPrima addObject:[[MateriaPrima alloc] initWithPrecio:1 posicion:5]];
-    [_materiasPrima addObject:[[MateriaPrima alloc] initWithPrecio:1 posicion:6]];
+    [_materiasPrima addObject:[[MateriaPrima alloc] initWithPrecio:2 posicion:1]];
+    [_materiasPrima addObject:[[MateriaPrima alloc] initWithPrecio:3 posicion:4]];
+    [_materiasPrima addObject:[[MateriaPrima alloc] initWithPrecio:4 posicion:5]];
+    [_materiasPrima addObject:[[MateriaPrima alloc] initWithPrecio:5 posicion:6]];
 
     [_maquinas addObject:[[Stage alloc] initWithRow:0 col:0 type:0 tiempo:3]];
     [_maquinas addObject:[[Stage alloc] initWithRow:0 col:1 type:0 tiempo:8]];

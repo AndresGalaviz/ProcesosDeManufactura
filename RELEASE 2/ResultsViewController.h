@@ -46,10 +46,9 @@
 
 @interface ResultsViewController : ViewController
 @property (strong, nonatomic) IBOutlet UILabel *presupuestoInicial;
-@property (strong, nonatomic) IBOutlet UILabel *participantes;
 @property (strong, nonatomic) IBOutlet UILabel *presupuestoFinal;
 @property (strong, nonatomic) IBOutlet UILabel *tiempoTotal;
-@property (strong, nonatomic) IBOutlet UILabel *productosProcesados;
+
 
 @property (strong,nonatomic) id datos;
 
